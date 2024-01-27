@@ -31,22 +31,21 @@ function CreateCabinForm() {
   })
 
   function onSubmit(data){
-    mutate(data);
-
-  }
+     mutate({...data,image:data.image[0]});
+   }
 
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
      
       <FormRow label="Cabin name" error={errors?.name?.message}>
-      <Input type="text" id="name"
+      <Input type="text" id="name" disabled={isCreating}
       {...register('name',{required:"This field is required"})}
       />
       </FormRow>
 
       <FormRow label="Maximum capacity" error={errors?.maxCapacity?.message}>
-      <Input type="number" id="maxCapacity" 
+      <Input type="number" id="maxCapacity" disabled={isCreating}
       {
         ...register('maxCapacity',
       {
@@ -60,7 +59,7 @@ function CreateCabinForm() {
       </FormRow>
 
       <FormRow label="Regular price" error={errors?.regularPrice?.message}>
-       <Input type="number" id="regularPrice"
+       <Input type="number" id="regularPrice" disabled={isCreating}
         {
           ...register('regularPrice',
           {
@@ -73,7 +72,7 @@ function CreateCabinForm() {
       </FormRow>
 
       <FormRow label="Discount" error={errors?.discount?.message} >
-        <Input type="number" id="discount" defaultValue={0}
+        <Input type="number" id="discount" defaultValue={0} disabled={isCreating}
         {
           ...register('discount',
           {
@@ -83,12 +82,14 @@ function CreateCabinForm() {
       </FormRow>
 
       <FormRow label="Description for website" error ={errors?.description?.message}>
-        <Textarea type="number" id="description" defaultValue=""
+        <Textarea type="number" id="description" defaultValue="" disabled={isCreating}
         {...register('description',{required:"This field is required"})} />
       </FormRow>
 
       <FormRow label="Cabin photo">
-        <FileInput id="image" accept="image/*" />
+        <FileInput id="image" accept="image/*"
+        {...register('image',{required:"This field is required"})}
+        />
       </FormRow>
 
       <FormRow>
