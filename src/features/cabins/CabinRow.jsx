@@ -45,7 +45,7 @@ const Discount = styled.div`
 
 
 function CabinRow({cabin}) {
-const {id, maxCapaCity, regPrice,discount, image, name
+const {id, maxCapacity, regularPrice,discount, image, name
 } = cabin;
 
 const queryClient = useQueryClient();
@@ -64,8 +64,8 @@ const {isLoading:isDeleting, mutate} = useMutation({
     <TableRow role="row">
     <Img src={image} alt={name}/>
     <Cabin>{name}</Cabin>
-    <div>Fits up to {maxCapaCity}</div>
-    <Price>{formatCurrency(regPrice)}</Price>
+    <div>Fits up to {maxCapacity}</div>
+    <Price>{formatCurrency(regularPrice)}</Price>
     <Discount>{formatCurrency(discount)}</Discount>
     <button 
       onClick={()=>mutate(id)}
