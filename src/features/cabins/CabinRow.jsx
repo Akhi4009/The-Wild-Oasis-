@@ -1,20 +1,36 @@
 import styled from "styled-components";
+import { HiPencil, HiTrash } from "react-icons/hi";
+import { BsCopy } from "react-icons/bs";
 import {formatCurrency} from "../../utils/helpers"
 
 import CreateCabinForm from "./CreateCabinForm";
 import { useState } from "react";
 import { useDeleteCabin } from "./useDeleteCabin";
+import { useCreateCabin } from "./useCreateCabin";
 
 function CabinRow({cabin}) {
   const [showForm,setShowForm] = useState(false);
+  const {isDeleting, deleteCabin} = useDeleteCabin()
+  const {isCreating, createCabin} = useCreateCabin();
+
   const {
     id, maxCapacity, regularPrice,
-    discount, image, name
+    discount, image, name, description,
   } = cabin;
 
-  const {isDeleting, deleteCabin} = useDeleteCabin()
 
-    return (
+  function handleDuplicate(){
+    createCabin({
+      name:`Copy of ${name}`,
+      maxCapacity,
+      regularPrice,
+      discount,
+      image,
+      description
+    })
+
+  }
+  return (
       <>
       <TableRow role="row">
       <Img src={image} alt={name}/>
@@ -27,16 +43,22 @@ function CabinRow({cabin}) {
         : <span>&mdash;</span>
       }
       <div>
+      <button 
+      onClick={handleDuplicate}
+      disabled={isCreating}
+      >
+        <BsCopy/>  
+      </button>
       <button
       onClick={()=>setShowForm(show=>!show)}
       >
-      Edit
+     <HiPencil/>
       </button>
       <button 
       onClick={()=>deleteCabin(id)}
       disabled={isDeleting}
       >
-      Delete
+      <HiTrash/>
       </button>
       </div>
       </TableRow>
