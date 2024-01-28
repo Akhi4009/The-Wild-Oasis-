@@ -3,7 +3,6 @@ import styled from "styled-components";
 import React from 'react'
 
 function Select({options, value, onChange, type}) {
-console.log(type)
   return (
     <StyledSelect value={value}
     onChange={onChange}
