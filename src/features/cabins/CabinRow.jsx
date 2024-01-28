@@ -8,6 +8,7 @@ import { useDeleteCabin } from "./useDeleteCabin";
 import { useCreateCabin } from "./useCreateCabin";
 import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
+import Table from "../../ui/Table";
 
 function CabinRow({cabin}) {
   const {isDeleting, deleteCabin} = useDeleteCabin()
@@ -31,7 +32,7 @@ function CabinRow({cabin}) {
 
   }
   return (
-    <TableRow role="row">
+    <Table.Row>
     <Img src={image} alt={name}/>
     <Cabin>{name}</Cabin>
     <div>Fits up to {maxCapacity}</div>
@@ -73,22 +74,10 @@ function CabinRow({cabin}) {
     </Modal.Window>
     </Modal>
     </div>
-    </TableRow>
+    </Table.Row>
     )
   }
   
-    
-  const TableRow = styled.div`
-  display: grid;
-  grid-template-columns: 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr;
-  column-gap: 2.4rem;
-  align-items: center;
-  padding: 1.4rem 2.4rem;
-
-  &:not(:last-child) {
-    border-bottom: 1px solid var(--color-grey-100);
-  }
-`;
 
 const Img = styled.img`
   display: block;
