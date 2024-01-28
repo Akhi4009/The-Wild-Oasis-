@@ -2,8 +2,6 @@ import styled from "styled-components";
 import {useState ,cloneElement,  useContext, createContext } from "react";
 import {createPortal} from "react-dom"
 import { HiX } from "react-icons/hi";
-import { useEffect } from "react";
-import { useRef } from "react";
 import { useOutsideClick } from "../hooks/useOutsideClick";
 
 const Modalcontext = createContext();

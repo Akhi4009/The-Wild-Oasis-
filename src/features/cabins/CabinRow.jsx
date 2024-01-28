@@ -9,10 +9,11 @@ import { useCreateCabin } from "./useCreateCabin";
 import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import Table from "../../ui/Table";
+import Menus from "../../ui/Menus";
 
 function CabinRow({cabin}) {
   const {isDeleting, deleteCabin} = useDeleteCabin()
-  const {isCreating, createCabin} = useCreateCabin();
+  const {createCabin} = useCreateCabin();
 
   const {
     id, maxCapacity, regularPrice,
@@ -43,28 +44,36 @@ function CabinRow({cabin}) {
       : <span>&mdash;</span>
     }
     <div>
-    <button 
-    onClick={handleDuplicate}
-    disabled={isCreating}
-    >
-    <BsCopy/>  
-    </button>
     <Modal>
+    <Menus.Menu>
+    <Menus.Toggle id={id}/>
+
+    <Menus.List id={id}>
+    <Menus.Button 
+      icon={<BsCopy/>}
+      onClick={handleDuplicate}
+    >
+      Duplicate
+    </Menus.Button>
     <Modal.Open opens="edit">
-    <button> <HiPencil/> </button>
+    <Menus.Button 
+    icon={<HiPencil/>}>
+    Edit
+    </Menus.Button>
     </Modal.Open>
+    <Modal.Open opens="delete">
+    <Menus.Button
+       icon={<HiTrash/>}>
+       Delete
+    </Menus.Button>
+    </Modal.Open>
+    </Menus.List>
+    </Menus.Menu>
+
     <Modal.Window name="edit">
     <CreateCabinForm cabinToEdit={cabin} />
     </Modal.Window>
 
-    <Modal.Open opens="delete">
-    <button 
-    onClick={()=>deleteCabin(id)}
-    disabled={isDeleting}
-    >
-    <HiTrash/>
-    </button>
-    </Modal.Open>
     <Modal.Window name="delete">
     <ConfirmDelete 
     disabled={isDeleting}
