@@ -9,7 +9,8 @@ import { formatCurrency } from "../../utils/helpers";
 import { formatDistanceFromNow } from "../../utils/helpers";
 import Menus from "../../ui/Menus";
 import { HiEye } from "react-icons/hi";
-import { HiArrowDownOnSquare } from "react-icons/hi2";
+import { HiArrowDownOnSquare, HiArrowUpOnSquare } from "react-icons/hi2";
+import useCheckout from "../check-in-out/useCheckout";
 
 
 function BookingRow({
@@ -26,6 +27,8 @@ function BookingRow({
 }) {
 
   const navigate = useNavigate();
+
+  const {checkout, isCheckingOut} = useCheckout();
   
   const statusToTagName = {
     unconfirmed: "blue",
@@ -71,6 +74,16 @@ function BookingRow({
       onClick={()=>navigate(`/checkin/${bookingId}`)}
       icon={<HiArrowDownOnSquare/>}>
         Check in
+        </Menus.Button>
+      }
+      { status === 'checked-in' &&
+        <Menus.Button 
+
+        icon={<HiArrowUpOnSquare/>}
+        onClick={()=>checkout(bookingId)}
+        disabled={isCheckingOut}
+        >
+          Check out
         </Menus.Button>
       }
       </Menus.List>
