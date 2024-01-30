@@ -16,7 +16,7 @@ const StyledHeader = styled.header`
 function Header() {
   return (
     <StyledHeader>
-    <UserAvatar/>
+    
       <HeaderMenu/>
     </StyledHeader>
   )
