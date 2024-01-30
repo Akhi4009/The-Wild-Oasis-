@@ -31,9 +31,9 @@ function App() {
     <BrowserRouter>
     <Routes>
     <Route element={
-      // <ProtectedRoute>
+       <ProtectedRoute>
       <AppLayout/>
-      // </ProtectedRoute>
+       </ProtectedRoute>
     }>
     <Route index element={<Navigate replace
      to='dashboard'/>}/>
