@@ -14,6 +14,7 @@ import Account from "./pages/Account"
 import AppLayout from "./ui/AppLayout";
 import Booking from "./pages/Booking";
 import Checkin from "./pages/Checkin";
+import ProtectedRoute from "./ui/ProtectedRoute";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -29,7 +30,11 @@ function App() {
     <GlobalStyle/>
     <BrowserRouter>
     <Routes>
-    <Route element={<AppLayout/>}>
+    <Route element={
+      <ProtectedRoute>
+      <AppLayout/>
+      </ProtectedRoute>
+    }>
     <Route index element={<Navigate replace
      to='dashboard'/>}/>
 
@@ -51,10 +56,10 @@ function App() {
     containerStyle={{margin:"8px"}}
     toastOptions={{
       success:{
-        duration:3000
+        duration:1000
       },
       error:{
-        duration:5000,
+        duration:1000,
       },
       style:{
         fontSize:"16px",
