@@ -7,13 +7,14 @@ import { useNavigate } from 'react-router-dom';
 function ProtectedRoute({children}) {
     const navigate = useNavigate();
     // 1. Load the authenticated user
-    const { isLoading, isAuthenticated} = useUser();
-    
-    
+    const { isLoading, user } = useUser();
+    const isAuthenticated = user?.role
+   
     // 2. if there is No authenticated user, redirect to the login page
-    useEffect(()=>{
-        if(!isAuthenticated && !isLoading) navigate("/login")
-    },[isAuthenticated, isLoading,navigate]) 
+   
+useEffect(()=>{
+    if(!isAuthenticated  && !isLoading) navigate("/login");
+},[isAuthenticated, isLoading,navigate])
 
     // 3. While Loading, show a Spinner
 
