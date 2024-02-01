@@ -15,13 +15,19 @@ const LoginLayout = styled.main`
 
 function Login() {
   return ( 
+    <>
     <LoginLayout>
     <Logo/>
     <Heading as="h4">
     Log in to your account
     </Heading>
     <LoginForm/>
+    <div >
+    <p>Email: admin@gmail.com</p>
+    <p>Password: admin123</p>
+    </div>
     </LoginLayout>
+    </>
   );
 }
 

@@ -18,7 +18,7 @@ import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import { useDeleteBooking } from "./useDeleteBooking";
 import { HiTrash } from "react-icons/hi";
-
+import Empty from "../../ui/Empty";
 
 function BookingDetail() {
   const {booking, isLoading} = useBooking();
@@ -28,7 +28,7 @@ function BookingDetail() {
   const {isDeleting, deleteBooking} = useDeleteBooking();
 
   if(isLoading) return <Spinner/>
-
+  if(!booking) return<Empty resource={"booking"}/>
   const {status,id:bookingId} = booking;
 
 

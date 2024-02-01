@@ -2,14 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import Logo from "./Logo";
 import MainNavbar from './MainNav'; 
-import Uploader from "../data/Uploader";
+
 
 function Sidebar() {
   return (
     <StyleSidebar>
         <Logo/>
         <MainNavbar/>
-        <Uploader/>
     </StyleSidebar>
   )
 }
